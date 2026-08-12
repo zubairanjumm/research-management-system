@@ -1,0 +1,24 @@
+.stat-card {
+    background-color: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+
+    padding: 20px;
+}
+
+.stat-card p {
+    color: var(--color-text-secondary);
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.stat-card h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.stat-card span {
+    color: var(--color-text-muted);
+    font-size: 12px;
+}

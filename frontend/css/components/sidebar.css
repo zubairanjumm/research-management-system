@@ -1,0 +1,40 @@
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--color-surface);
+    border-right: 1px solid var(--color-border);
+
+    padding: 28px 16px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 700;
+
+    padding: 0 12px;
+    margin-bottom: 40px;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nav-item {
+    padding: 11px 12px;
+    border-radius: var(--radius-md);
+
+    color: var(--color-text-secondary);
+    font-size: 14px;
+}
+
+.nav-item:hover {
+    background-color: #f3f4f6;
+    color: var(--color-text);
+}
+
+.nav-item.active {
+    background-color: #eef2ff;
+    color: var(--color-primary);
+    font-weight: 600;
+}
