@@ -1,240 +1,191 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>ResearchHub</title>
 
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/global.css" />
 
-    <link rel="stylesheet" href="css/components/sidebar.css">
-    <link rel="stylesheet" href="css/components/topbar.css">
-    <link rel="stylesheet" href="css/components/button.css">
-    <link rel="stylesheet" href="css/components/card.css">
-    <link rel="stylesheet" href="css/components/panel.css">
+    <link rel="stylesheet" href="css/components/sidebar.css" />
+    <link rel="stylesheet" href="css/components/topbar.css" />
+    <link rel="stylesheet" href="css/components/button.css" />
+    <link rel="stylesheet" href="css/components/card.css" />
+    <link rel="stylesheet" href="css/components/panel.css" />
 
-    <link rel="stylesheet" href="css/pages/dashboard.css">
-</head>
+    <link rel="stylesheet" href="css/pages/dashboard.css" />
+  </head>
 
-<body>
-
+  <body>
     <div class="app">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="logo">ResearchHub</div>
 
-        <!-- Sidebar -->
-        <aside class="sidebar">
+        <nav class="navigation">
+          <a href="#" class="nav-item active">
+            <span>Dashboard</span>
+          </a>
 
-            <div class="logo">
-                ResearchHub
+          <a href="pages/projects.html" class="nav-item">
+            <span>Projects</span>
+          </a>
+
+          <a href="pages/resources.html" class="nav-item">
+            <span>Resources</span>
+          </a>
+          <a href="#" class="nav-item">
+            <span>Notes</span>
+          </a>
+
+          <a href="#" class="nav-item">
+            <span>Bookmarks</span>
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Main content -->
+      <main class="main-content">
+        <!-- Top bar -->
+        <header class="topbar">
+          <div class="search">
+            <input type="text" placeholder="Search your research..." />
+          </div>
+
+          <div class="profile">
+            <div class="avatar">A</div>
+          </div>
+        </header>
+
+        <!-- Dashboard -->
+        <section class="dashboard">
+          <div class="page-header">
+            <div>
+              <p class="eyebrow">Overview</p>
+              <h1>Good evening.</h1>
+              <p class="subtitle">
+                Here's what's happening with your research.
+              </p>
             </div>
 
-            <nav class="navigation">
+            <button class="primary-button">+ Add Resource</button>
+          </div>
 
-                <a href="#" class="nav-item active">
-                    <span>Dashboard</span>
-                </a>
+          <!-- Statistics -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <p>Projects</p>
+              <h2>8</h2>
+              <span>2 active this week</span>
+            </div>
 
-                <a href="pages/projects.html" class="nav-item">
-                    <span>Projects</span>
-                </a>
+            <div class="stat-card">
+              <p>Resources</p>
+              <h2>124</h2>
+              <span>12 added this month</span>
+            </div>
 
-                <a href="#" class="nav-item">
-                    <span>Resources</span>
-                </a>
+            <div class="stat-card">
+              <p>Notes</p>
+              <h2>37</h2>
+              <span>5 updated recently</span>
+            </div>
 
-                <a href="#" class="nav-item">
-                    <span>Notes</span>
-                </a>
+            <div class="stat-card">
+              <p>Bookmarks</p>
+              <h2>21</h2>
+              <span>3 added this week</span>
+            </div>
+          </div>
 
-                <a href="#" class="nav-item">
-                    <span>Bookmarks</span>
-                </a>
-
-            </nav>
-
-        </aside>
-
-
-        <!-- Main content -->
-        <main class="main-content">
-
-            <!-- Top bar -->
-            <header class="topbar">
-
-                <div class="search">
-                    <input
-                        type="text"
-                        placeholder="Search your research..."
-                    >
+          <!-- Dashboard sections -->
+          <div class="dashboard-grid">
+            <section class="panel">
+              <div class="panel-header">
+                <div>
+                  <h2>Recent Resources</h2>
+                  <p>Your recently added research material.</p>
                 </div>
 
-                <div class="profile">
-                    <div class="avatar">A</div>
+                <a href="#">View all</a>
+              </div>
+
+              <div class="resource-list">
+                <div class="resource-item">
+                  <div class="resource-icon">PDF</div>
+
+                  <div class="resource-info">
+                    <h3>Understanding Database Indexes</h3>
+                    <p>Database • Added today</p>
+                  </div>
                 </div>
 
-            </header>
+                <div class="resource-item">
+                  <div class="resource-icon">WEB</div>
 
-
-            <!-- Dashboard -->
-            <section class="dashboard">
-
-                <div class="page-header">
-
-                    <div>
-                        <p class="eyebrow">Overview</p>
-                        <h1>Good evening.</h1>
-                        <p class="subtitle">
-                            Here's what's happening with your research.
-                        </p>
-                    </div>
-
-                    <button class="primary-button">
-                        + Add Resource
-                    </button>
-
+                  <div class="resource-info">
+                    <h3>Modern JavaScript Guide</h3>
+                    <p>Frontend • Added yesterday</p>
+                  </div>
                 </div>
 
+                <div class="resource-item">
+                  <div class="resource-icon">PDF</div>
 
-                <!-- Statistics -->
-                <div class="stats-grid">
-
-                    <div class="stat-card">
-                        <p>Projects</p>
-                        <h2>8</h2>
-                        <span>2 active this week</span>
-                    </div>
-
-                    <div class="stat-card">
-                        <p>Resources</p>
-                        <h2>124</h2>
-                        <span>12 added this month</span>
-                    </div>
-
-                    <div class="stat-card">
-                        <p>Notes</p>
-                        <h2>37</h2>
-                        <span>5 updated recently</span>
-                    </div>
-
-                    <div class="stat-card">
-                        <p>Bookmarks</p>
-                        <h2>21</h2>
-                        <span>3 added this week</span>
-                    </div>
-
+                  <div class="resource-info">
+                    <h3>System Design Fundamentals</h3>
+                    <p>Backend • Added 3 days ago</p>
+                  </div>
                 </div>
-
-
-                <!-- Dashboard sections -->
-                <div class="dashboard-grid">
-
-                    <section class="panel">
-
-                        <div class="panel-header">
-                            <div>
-                                <h2>Recent Resources</h2>
-                                <p>Your recently added research material.</p>
-                            </div>
-
-                            <a href="#">View all</a>
-                        </div>
-
-                        <div class="resource-list">
-
-                            <div class="resource-item">
-                                <div class="resource-icon">PDF</div>
-
-                                <div class="resource-info">
-                                    <h3>Understanding Database Indexes</h3>
-                                    <p>Database • Added today</p>
-                                </div>
-                            </div>
-
-                            <div class="resource-item">
-                                <div class="resource-icon">WEB</div>
-
-                                <div class="resource-info">
-                                    <h3>Modern JavaScript Guide</h3>
-                                    <p>Frontend • Added yesterday</p>
-                                </div>
-                            </div>
-
-                            <div class="resource-item">
-                                <div class="resource-icon">PDF</div>
-
-                                <div class="resource-info">
-                                    <h3>System Design Fundamentals</h3>
-                                    <p>Backend • Added 3 days ago</p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </section>
-
-
-                    <section class="panel">
-
-                        <div class="panel-header">
-                            <div>
-                                <h2>Active Projects</h2>
-                                <p>Research you're currently working on.</p>
-                            </div>
-
-                            <a href="#">View all</a>
-                        </div>
-
-                        <div class="project-list">
-
-                            <div class="project-item">
-
-                                <div class="project-top">
-                                    <h3>Web Development</h3>
-                                    <span>80%</span>
-                                </div>
-
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 80%;"></div>
-                                </div>
-
-                                <p>18 resources</p>
-
-                            </div>
-
-
-                            <div class="project-item">
-
-                                <div class="project-top">
-                                    <h3>Database Research</h3>
-                                    <span>50%</span>
-                                </div>
-
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 50%;"></div>
-                                </div>
-
-                                <p>12 resources</p>
-
-                            </div>
-
-                        </div>
-
-                    </section>
-
-                </div>
-
+              </div>
             </section>
 
-        </main>
+            <section class="panel">
+              <div class="panel-header">
+                <div>
+                  <h2>Active Projects</h2>
+                  <p>Research you're currently working on.</p>
+                </div>
 
+                <a href="#">View all</a>
+              </div>
+
+              <div class="project-list">
+                <div class="project-item">
+                  <div class="project-top">
+                    <h3>Web Development</h3>
+                    <span>80%</span>
+                  </div>
+
+                  <div class="progress">
+                    <div class="progress-bar" style="width: 80%"></div>
+                  </div>
+
+                  <p>18 resources</p>
+                </div>
+
+                <div class="project-item">
+                  <div class="project-top">
+                    <h3>Database Research</h3>
+                    <span>50%</span>
+                  </div>
+
+                  <div class="progress">
+                    <div class="progress-bar" style="width: 50%"></div>
+                  </div>
+
+                  <p>12 resources</p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
     </div>
 
-
     <script src="app.js"></script>
-
-</body>
-
+  </body>
 </html>

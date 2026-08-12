@@ -1,456 +1,259 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Projects — ResearchHub</title>
 
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/variables.css">
-    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/global.css" />
 
-    <link rel="stylesheet" href="../css/components/sidebar.css">
-    <link rel="stylesheet" href="../css/components/topbar.css">
-    <link rel="stylesheet" href="../css/components/button.css">
-    <link rel="stylesheet" href="../css/components/card.css">
-    <link rel="stylesheet" href="../css/components/panel.css">
+    <link rel="stylesheet" href="../css/components/sidebar.css" />
+    <link rel="stylesheet" href="../css/components/topbar.css" />
+    <link rel="stylesheet" href="../css/components/button.css" />
+    <link rel="stylesheet" href="../css/components/card.css" />
+    <link rel="stylesheet" href="../css/components/panel.css" />
 
-    <link rel="stylesheet" href="../css/pages/projects.css">
-</head>
+    <link rel="stylesheet" href="../css/pages/projects.css" />
+  </head>
 
-<body>
-
+  <body>
     <div class="app">
+      <!-- Sidebar -->
 
-        <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="logo">ResearchHub</div>
 
-        <aside class="sidebar">
+        <nav class="navigation">
+          <a href="../index.html" class="nav-item"> Dashboard </a>
 
-            <div class="logo">
-                ResearchHub
+          <a href="projects.html" class="nav-item active"> Projects </a>
+
+          <a href="resources.html" class="nav-item"> Resources </a>
+
+          <a href="#" class="nav-item"> Notes </a>
+
+          <a href="#" class="nav-item"> Bookmarks </a>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+
+      <main class="main-content">
+        <!-- Topbar -->
+
+        <header class="topbar">
+          <div class="search">
+            <input type="text" placeholder="Search your research..." />
+          </div>
+
+          <div class="profile">
+            <div class="avatar">A</div>
+          </div>
+        </header>
+
+        <!-- Projects -->
+
+        <section class="projects-page">
+          <div class="projects-header">
+            <div>
+              <p class="eyebrow">Workspace</p>
+
+              <h1>Projects</h1>
+
+              <p class="subtitle">
+                Organize your research into focused projects.
+              </p>
             </div>
 
-            <nav class="navigation">
+            <button class="primary-button">+ New Project</button>
+          </div>
 
-                <a href="../index.html" class="nav-item">
-                    Dashboard
-                </a>
+          <!-- Search / Filter -->
 
-                <a href="projects.html" class="nav-item active">
-                    Projects
-                </a>
+          <div class="projects-toolbar">
+            <input
+              type="text"
+              class="project-search"
+              placeholder="Search projects..."
+            />
 
-                <a href="#" class="nav-item">
-                    Resources
-                </a>
+            <select class="project-filter">
+              <option value="all">All Projects</option>
 
-                <a href="#" class="nav-item">
-                    Notes
-                </a>
+              <option value="active">Active</option>
 
-                <a href="#" class="nav-item">
-                    Bookmarks
-                </a>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
 
-            </nav>
+          <!-- Project Grid -->
 
-        </aside>
+          <div class="projects-grid">
+            <!-- Project Card -->
 
+            <article class="project-card">
+              <div class="project-card-header">
+                <div class="project-symbol">WD</div>
 
-        <!-- Main Content -->
+                <button class="project-menu">⋮</button>
+              </div>
 
-        <main class="main-content">
+              <h2>Web Development</h2>
 
-            <!-- Topbar -->
+              <p>
+                Learning modern web development and building practical projects.
+              </p>
 
-            <header class="topbar">
+              <div class="project-meta">
+                <span> 18 resources </span>
 
-                <div class="search">
+                <span> 7 notes </span>
+              </div>
 
-                    <input
-                        type="text"
-                        placeholder="Search your research..."
-                    >
+              <div class="project-progress">
+                <div class="progress-info">
+                  <span> Progress </span>
 
+                  <span> 80% </span>
                 </div>
 
-                <div class="profile">
+                <div class="progress">
+                  <div class="progress-bar" style="width: 80%"></div>
+                </div>
+              </div>
 
-                    <div class="avatar">
-                        A
-                    </div>
+              <div class="project-card-footer">
+                <span> Updated today </span>
 
+                <a href="#"> Open → </a>
+              </div>
+            </article>
+
+            <!-- Project Card -->
+
+            <article class="project-card">
+              <div class="project-card-header">
+                <div class="project-symbol">DB</div>
+
+                <button class="project-menu">⋮</button>
+              </div>
+
+              <h2>Database Research</h2>
+
+              <p>
+                Exploring relational databases, indexing, and query
+                optimization.
+              </p>
+
+              <div class="project-meta">
+                <span> 12 resources </span>
+
+                <span> 4 notes </span>
+              </div>
+
+              <div class="project-progress">
+                <div class="progress-info">
+                  <span> Progress </span>
+
+                  <span> 50% </span>
                 </div>
 
-            </header>
+                <div class="progress">
+                  <div class="progress-bar" style="width: 50%"></div>
+                </div>
+              </div>
 
+              <div class="project-card-footer">
+                <span> Updated yesterday </span>
 
-            <!-- Projects -->
+                <a href="#"> Open → </a>
+              </div>
+            </article>
 
-            <section class="projects-page">
+            <!-- Project Card -->
 
-                <div class="projects-header">
+            <article class="project-card">
+              <div class="project-card-header">
+                <div class="project-symbol">SD</div>
 
-                    <div>
-                        <p class="eyebrow">Workspace</p>
+                <button class="project-menu">⋮</button>
+              </div>
 
-                        <h1>Projects</h1>
+              <h2>System Design</h2>
 
-                        <p class="subtitle">
-                            Organize your research into focused projects.
-                        </p>
-                    </div>
+              <p>Studying scalable systems, APIs, caching, and architecture.</p>
 
-                    <button class="primary-button">
-                        + New Project
-                    </button>
+              <div class="project-meta">
+                <span> 24 resources </span>
 
+                <span> 11 notes </span>
+              </div>
+
+              <div class="project-progress">
+                <div class="progress-info">
+                  <span> Progress </span>
+
+                  <span> 65% </span>
                 </div>
 
+                <div class="progress">
+                  <div class="progress-bar" style="width: 65%"></div>
+                </div>
+              </div>
 
-                <!-- Search / Filter -->
+              <div class="project-card-footer">
+                <span> Updated 3 days ago </span>
 
-                <div class="projects-toolbar">
+                <a href="#"> Open → </a>
+              </div>
+            </article>
 
-                    <input
-                        type="text"
-                        class="project-search"
-                        placeholder="Search projects..."
-                    >
+            <!-- Project Card -->
 
-                    <select class="project-filter">
+            <article class="project-card">
+              <div class="project-card-header">
+                <div class="project-symbol">OS</div>
 
-                        <option value="all">
-                            All Projects
-                        </option>
+                <button class="project-menu">⋮</button>
+              </div>
 
-                        <option value="active">
-                            Active
-                        </option>
+              <h2>Operating Systems</h2>
 
-                        <option value="completed">
-                            Completed
-                        </option>
+              <p>
+                Notes and resources about processes, memory, and operating
+                system concepts.
+              </p>
 
-                    </select>
+              <div class="project-meta">
+                <span> 9 resources </span>
 
+                <span> 3 notes </span>
+              </div>
+
+              <div class="project-progress">
+                <div class="progress-info">
+                  <span> Progress </span>
+
+                  <span> 35% </span>
                 </div>
 
-
-                <!-- Project Grid -->
-
-                <div class="projects-grid">
-
-
-                    <!-- Project Card -->
-
-                    <article class="project-card">
-
-                        <div class="project-card-header">
-
-                            <div class="project-symbol">
-                                WD
-                            </div>
-
-                            <button class="project-menu">
-                                ⋮
-                            </button>
-
-                        </div>
-
-                        <h2>
-                            Web Development
-                        </h2>
-
-                        <p>
-                            Learning modern web development
-                            and building practical projects.
-                        </p>
-
-                        <div class="project-meta">
-
-                            <span>
-                                18 resources
-                            </span>
-
-                            <span>
-                                7 notes
-                            </span>
-
-                        </div>
-
-                        <div class="project-progress">
-
-                            <div class="progress-info">
-
-                                <span>
-                                    Progress
-                                </span>
-
-                                <span>
-                                    80%
-                                </span>
-
-                            </div>
-
-                            <div class="progress">
-                                <div
-                                    class="progress-bar"
-                                    style="width: 80%;"
-                                ></div>
-                            </div>
-
-                        </div>
-
-                        <div class="project-card-footer">
-
-                            <span>
-                                Updated today
-                            </span>
-
-                            <a href="#">
-                                Open →
-                            </a>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- Project Card -->
-
-                    <article class="project-card">
-
-                        <div class="project-card-header">
-
-                            <div class="project-symbol">
-                                DB
-                            </div>
-
-                            <button class="project-menu">
-                                ⋮
-                            </button>
-
-                        </div>
-
-                        <h2>
-                            Database Research
-                        </h2>
-
-                        <p>
-                            Exploring relational databases,
-                            indexing, and query optimization.
-                        </p>
-
-                        <div class="project-meta">
-
-                            <span>
-                                12 resources
-                            </span>
-
-                            <span>
-                                4 notes
-                            </span>
-
-                        </div>
-
-                        <div class="project-progress">
-
-                            <div class="progress-info">
-
-                                <span>
-                                    Progress
-                                </span>
-
-                                <span>
-                                    50%
-                                </span>
-
-                            </div>
-
-                            <div class="progress">
-                                <div
-                                    class="progress-bar"
-                                    style="width: 50%;"
-                                ></div>
-                            </div>
-
-                        </div>
-
-                        <div class="project-card-footer">
-
-                            <span>
-                                Updated yesterday
-                            </span>
-
-                            <a href="#">
-                                Open →
-                            </a>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- Project Card -->
-
-                    <article class="project-card">
-
-                        <div class="project-card-header">
-
-                            <div class="project-symbol">
-                                SD
-                            </div>
-
-                            <button class="project-menu">
-                                ⋮
-                            </button>
-
-                        </div>
-
-                        <h2>
-                            System Design
-                        </h2>
-
-                        <p>
-                            Studying scalable systems,
-                            APIs, caching, and architecture.
-                        </p>
-
-                        <div class="project-meta">
-
-                            <span>
-                                24 resources
-                            </span>
-
-                            <span>
-                                11 notes
-                            </span>
-
-                        </div>
-
-                        <div class="project-progress">
-
-                            <div class="progress-info">
-
-                                <span>
-                                    Progress
-                                </span>
-
-                                <span>
-                                    65%
-                                </span>
-
-                            </div>
-
-                            <div class="progress">
-                                <div
-                                    class="progress-bar"
-                                    style="width: 65%;"
-                                ></div>
-                            </div>
-
-                        </div>
-
-                        <div class="project-card-footer">
-
-                            <span>
-                                Updated 3 days ago
-                            </span>
-
-                            <a href="#">
-                                Open →
-                            </a>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- Project Card -->
-
-                    <article class="project-card">
-
-                        <div class="project-card-header">
-
-                            <div class="project-symbol">
-                                OS
-                            </div>
-
-                            <button class="project-menu">
-                                ⋮
-                            </button>
-
-                        </div>
-
-                        <h2>
-                            Operating Systems
-                        </h2>
-
-                        <p>
-                            Notes and resources about processes,
-                            memory, and operating system concepts.
-                        </p>
-
-                        <div class="project-meta">
-
-                            <span>
-                                9 resources
-                            </span>
-
-                            <span>
-                                3 notes
-                            </span>
-
-                        </div>
-
-                        <div class="project-progress">
-
-                            <div class="progress-info">
-
-                                <span>
-                                    Progress
-                                </span>
-
-                                <span>
-                                    35%
-                                </span>
-
-                            </div>
-
-                            <div class="progress">
-                                <div
-                                    class="progress-bar"
-                                    style="width: 35%;"
-                                ></div>
-                            </div>
-
-                        </div>
-
-                        <div class="project-card-footer">
-
-                            <span>
-                                Updated last week
-                            </span>
-
-                            <a href="#">
-                                Open →
-                            </a>
-
-                        </div>
-
-                    </article>
-
+                <div class="progress">
+                  <div class="progress-bar" style="width: 35%"></div>
                 </div>
+              </div>
 
-            </section>
+              <div class="project-card-footer">
+                <span> Updated last week </span>
 
-        </main>
-
+                <a href="#"> Open → </a>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
     </div>
-
-</body>
-
+  </body>
 </html>

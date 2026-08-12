@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resources — ResearchHub</title>
+
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+
+    <link rel="stylesheet" href="../css/components/sidebar.css">
+    <link rel="stylesheet" href="../css/components/topbar.css">
+    <link rel="stylesheet" href="../css/components/button.css">
+    <link rel="stylesheet" href="../css/components/card.css">
+    <link rel="stylesheet" href="../css/components/panel.css">
+
+    <link rel="stylesheet" href="../css/pages/resources.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- Sidebar -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                ResearchHub
+            </div>
+
+            <nav class="navigation">
+
+                <a href="../index.html" class="nav-item">
+                    Dashboard
+                </a>
+
+                <a href="projects.html" class="nav-item">
+                    Projects
+                </a>
+
+                <a href="resources.html" class="nav-item active">
+                    Resources
+                </a>
+
+                <a href="#" class="nav-item">
+                    Notes
+                </a>
+
+                <a href="#" class="nav-item">
+                    Bookmarks
+                </a>
+
+            </nav>
+
+        </aside>
+
+
+        <!-- Main Content -->
+
+        <main class="main-content">
+
+            <!-- Topbar -->
+
+            <header class="topbar">
+
+                <div class="search">
+
+                    <input
+                        type="text"
+                        placeholder="Search your research..."
+                    >
+
+                </div>
+
+                <div class="profile">
+
+                    <div class="avatar">
+                        A
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- Resources Page -->
+
+            <section class="resources-page">
+
+                <div class="resources-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            Library
+                        </p>
+
+                        <h1>
+                            Resources
+                        </h1>
+
+                        <p class="subtitle">
+                            Store and organize everything you're learning.
+                        </p>
+
+                    </div>
+
+                    <button class="primary-button">
+                        + Add Resource
+                    </button>
+
+                </div>
+
+
+                <!-- Filters -->
+
+                <div class="resources-toolbar">
+
+                    <div class="resource-search">
+
+                        <span class="search-icon">
+                            🔍
+                        </span>
+
+                        <input
+                            type="text"
+                            placeholder="Search resources..."
+                        >
+
+                    </div>
+
+
+                    <select class="resource-filter">
+
+                        <option>
+                            All Types
+                        </option>
+
+                        <option>
+                            PDF
+                        </option>
+
+                        <option>
+                            Website
+                        </option>
+
+                        <option>
+                            Book
+                        </option>
+
+                        <option>
+                            Video
+                        </option>
+
+                    </select>
+
+
+                    <select class="resource-filter">
+
+                        <option>
+                            All Projects
+                        </option>
+
+                        <option>
+                            Web Development
+                        </option>
+
+                        <option>
+                            Database Research
+                        </option>
+
+                        <option>
+                            System Design
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Resources Panel -->
+
+                <div class="resources-panel">
+
+                    <div class="resources-panel-header">
+
+                        <div>
+
+                            <h2>
+                                All Resources
+                            </h2>
+
+                            <p>
+                                124 resources
+                            </p>
+
+                        </div>
+
+                        <select class="sort-select">
+
+                            <option>
+                                Recently Added
+                            </option>
+
+                            <option>
+                                Oldest First
+                            </option>
+
+                            <option>
+                                Alphabetical
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Resource Table -->
+
+                    <div class="resource-table">
+
+                        <!-- Table Header -->
+
+                        <div class="resource-row resource-row-header">
+
+                            <div>
+                                Resource
+                            </div>
+
+                            <div>
+                                Type
+                            </div>
+
+                            <div>
+                                Project
+                            </div>
+
+                            <div>
+                                Added
+                            </div>
+
+                            <div>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Resource -->
+
+                        <div class="resource-row">
+
+                            <div class="resource-title">
+
+                                <div class="resource-type-icon pdf">
+                                    PDF
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        Understanding Database Indexes
+                                    </h3>
+
+                                    <p>
+                                        Database optimization reference
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div>
+                                <span class="badge">
+                                    PDF
+                                </span>
+                            </div>
+
+
+                            <div>
+                                <span class="project-tag">
+                                    Database Research
+                                </span>
+                            </div>
+
+
+                            <div class="resource-date">
+                                Today
+                            </div>
+
+
+                            <button class="resource-menu">
+                                ⋮
+                            </button>
+
+                        </div>
+
+
+                        <!-- Resource -->
+
+                        <div class="resource-row">
+
+                            <div class="resource-title">
+
+                                <div class="resource-type-icon web">
+                                    WEB
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        Modern JavaScript Guide
+                                    </h3>
+
+                                    <p>
+                                        JavaScript language reference
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div>
+                                <span class="badge">
+                                    Website
+                                </span>
+                            </div>
+
+
+                            <div>
+                                <span class="project-tag">
+                                    Web Development
+                                </span>
+                            </div>
+
+
+                            <div class="resource-date">
+                                Yesterday
+                            </div>
+
+
+                            <button class="resource-menu">
+                                ⋮
+                            </button>
+
+                        </div>
+
+
+                        <!-- Resource -->
+
+                        <div class="resource-row">
+
+                            <div class="resource-title">
+
+                                <div class="resource-type-icon pdf">
+                                    PDF
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        System Design Fundamentals
+                                    </h3>
+
+                                    <p>
+                                        Introduction to scalable architecture
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div>
+                                <span class="badge">
+                                    PDF
+                                </span>
+                            </div>
+
+
+                            <div>
+                                <span class="project-tag">
+                                    System Design
+                                </span>
+                            </div>
+
+
+                            <div class="resource-date">
+                                3 days ago
+                            </div>
+
+
+                            <button class="resource-menu">
+                                ⋮
+                            </button>
+
+                        </div>
+
+
+                        <!-- Resource -->
+
+                        <div class="resource-row">
+
+                            <div class="resource-title">
+
+                                <div class="resource-type-icon web">
+                                    WEB
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        MDN Web Documentation
+                                    </h3>
+
+                                    <p>
+                                        Web development documentation
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div>
+                                <span class="badge">
+                                    Website
+                                </span>
+                            </div>
+
+
+                            <div>
+                                <span class="project-tag">
+                                    Web Development
+                                </span>
+                            </div>
+
+
+                            <div class="resource-date">
+                                Last week
+                            </div>
+
+
+                            <button class="resource-menu">
+                                ⋮
+                            </button>
+
+                        </div>
+
+
+                        <!-- Resource -->
+
+                        <div class="resource-row">
+
+                            <div class="resource-title">
+
+                                <div class="resource-type-icon book">
+                                    BOOK
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        Designing Data-Intensive Applications
+                                    </h3>
+
+                                    <p>
+                                        Distributed systems and databases
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div>
+                                <span class="badge">
+                                    Book
+                                </span>
+                            </div>
+
+
+                            <div>
+                                <span class="project-tag">
+                                    Database Research
+                                </span>
+                            </div>
+
+
+                            <div class="resource-date">
+                                Last week
+                            </div>
+
+
+                            <button class="resource-menu">
+                                ⋮
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>
