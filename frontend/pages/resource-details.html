@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Resource Details — ResearchHub</title>
+
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/global.css" />
+
+    <link rel="stylesheet" href="../css/components/sidebar.css" />
+    <link rel="stylesheet" href="../css/components/topbar.css" />
+    <link rel="stylesheet" href="../css/components/button.css" />
+    <link rel="stylesheet" href="../css/components/card.css" />
+    <link rel="stylesheet" href="../css/components/panel.css" />
+
+    <link rel="stylesheet" href="../css/pages/resource-details.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- Sidebar -->
+
+      <aside class="sidebar">
+        <div class="logo">ResearchHub</div>
+
+        <nav class="navigation">
+          <a href="../index.html" class="nav-item"> Dashboard </a>
+
+          <a href="projects.html" class="nav-item"> Projects </a>
+
+          <a href="resources.html" class="nav-item active"> Resources </a>
+
+          <a href="#" class="nav-item"> Notes </a>
+
+          <a href="#" class="nav-item"> Bookmarks </a>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+
+      <main class="main-content">
+        <!-- Topbar -->
+
+        <header class="topbar">
+          <div class="search">
+            <input type="text" placeholder="Search your research..." />
+          </div>
+
+          <div class="profile">
+            <div class="avatar">A</div>
+          </div>
+        </header>
+
+        <!-- Resource Details -->
+
+        <section class="resource-details-page">
+          <!-- Back Button -->
+
+          <a href="resources.html" class="back-link"> ← Back to Resources </a>
+
+          <!-- Resource Header -->
+
+          <div class="resource-details-header">
+            <div class="resource-heading">
+              <div class="large-resource-icon">PDF</div>
+
+              <div>
+                <p class="eyebrow">Database Research</p>
+
+                <h3>
+                  <a href="resource-details.html">
+                    Understanding Database Indexes
+                  </a>
+                </h3>
+
+                <p class="resource-description">
+                  A detailed reference for understanding how database indexes
+                  work and how they improve query performance.
+                </p>
+              </div>
+            </div>
+
+            <div class="resource-actions">
+              <button class="secondary-button">Edit</button>
+
+              <button class="primary-button">Open Resource</button>
+            </div>
+          </div>
+
+          <!-- Metadata -->
+
+          <div class="resource-meta-bar">
+            <div class="meta-item">
+              <span> Type </span>
+
+              <strong> PDF </strong>
+            </div>
+
+            <div class="meta-item">
+              <span> Project </span>
+
+              <strong> Database Research </strong>
+            </div>
+
+            <div class="meta-item">
+              <span> Added </span>
+
+              <strong> August 12, 2026 </strong>
+            </div>
+
+            <div class="meta-item">
+              <span> Last Updated </span>
+
+              <strong> Today </strong>
+            </div>
+          </div>
+
+          <!-- Main Grid -->
+
+          <div class="details-grid">
+            <!-- Left Column -->
+
+            <div class="details-main">
+              <!-- Description -->
+
+              <div class="details-panel">
+                <div class="details-panel-header">
+                  <div>
+                    <h2>Description</h2>
+
+                    <p>About this resource</p>
+                  </div>
+                </div>
+
+                <div class="details-content">
+                  <p>
+                    Database indexes are fundamental structures used to improve
+                    the performance of database queries.
+                  </p>
+
+                  <p>
+                    This resource covers common index types, indexing
+                    strategies, trade-offs, and practical examples for
+                    relational databases.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Notes -->
+
+              <div class="details-panel">
+                <div class="details-panel-header">
+                  <div>
+                    <h2>Notes</h2>
+
+                    <p>Your thoughts about this resource</p>
+                  </div>
+
+                  <button class="secondary-button">+ Add Note</button>
+                </div>
+
+                <div class="note">
+                  <div class="note-header">
+                    <strong> Important concept </strong>
+
+                    <span> Today </span>
+                  </div>
+
+                  <p>
+                    Indexes can significantly speed up reads, but they also
+                    introduce additional storage and write costs.
+                  </p>
+                </div>
+
+                <div class="note">
+                  <div class="note-header">
+                    <strong> Follow up </strong>
+
+                    <span> Yesterday </span>
+                  </div>
+
+                  <p>
+                    Research B-tree and hash indexes and understand when each
+                    one should be preferred.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column -->
+
+            <aside class="details-sidebar">
+              <!-- Tags -->
+
+              <div class="details-panel">
+                <div class="details-panel-header">
+                  <div>
+                    <h2>Tags</h2>
+
+                    <p>Categorize this resource</p>
+                  </div>
+                </div>
+
+                <div class="tags">
+                  <span class="tag"> Database </span>
+
+                  <span class="tag"> SQL </span>
+
+                  <span class="tag"> Performance </span>
+
+                  <span class="tag"> Backend </span>
+                </div>
+              </div>
+
+              <!-- Related Resources -->
+
+              <div class="details-panel">
+                <div class="details-panel-header">
+                  <div>
+                    <h2>Related Resources</h2>
+
+                    <p>From this project</p>
+                  </div>
+                </div>
+
+                <div class="related-resource">
+                  <div class="small-resource-icon">PDF</div>
+
+                  <div>
+                    <h3>Query Optimization</h3>
+
+                    <p>PDF · 2 days ago</p>
+                  </div>
+                </div>
+
+                <div class="related-resource">
+                  <div class="small-resource-icon">WEB</div>
+
+                  <div>
+                    <h3>SQL Performance Guide</h3>
+
+                    <p>Website · Last week</p>
+                  </div>
+                </div>
+
+                <div class="related-resource">
+                  <div class="small-resource-icon">BOOK</div>
+
+                  <div>
+                    <h3>Database Internals</h3>
+
+                    <p>Book · Last week</p>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
