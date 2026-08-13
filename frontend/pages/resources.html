@@ -1,180 +1,470 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Resources — ResearchHub</title>
 
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/variables.css">
-    <link rel="stylesheet" href="../css/global.css">
 
-    <link rel="stylesheet" href="../css/components/sidebar.css">
-    <link rel="stylesheet" href="../css/components/topbar.css">
-    <link rel="stylesheet" href="../css/components/button.css">
-    <link rel="stylesheet" href="../css/components/card.css">
-    <link rel="stylesheet" href="../css/components/panel.css">
+    <link
+        rel="stylesheet"
+        href="../css/reset.css"
+    >
 
-    <link rel="stylesheet" href="../css/pages/resources.css">
+    <link
+        rel="stylesheet"
+        href="../css/variables.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/global.css"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="../css/components/sidebar.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/components/topbar.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/components/button.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/components/card.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/components/panel.css"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="../css/pages/resources.css"
+    >
+
+
+    <style>
+
+        .modal-overlay {
+
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(0, 0, 0, 0.5);
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            z-index: 1000;
+
+        }
+
+
+        .modal-overlay.active {
+
+            display: flex;
+
+        }
+
+
+        .modal {
+
+            width: min(500px, 90%);
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 24px;
+
+            box-shadow:
+                0 20px 50px
+                rgba(0, 0, 0, 0.2);
+
+        }
+
+
+        .modal-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 24px;
+
+        }
+
+
+        .modal-header h2 {
+
+            margin: 0;
+
+        }
+
+
+        .modal-close {
+
+            border: none;
+
+            background: transparent;
+
+            font-size: 24px;
+
+            cursor: pointer;
+
+        }
+
+
+        .form-group {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .form-group label {
+
+            font-weight: 600;
+
+        }
+
+
+        .form-group input,
+
+        .form-group textarea,
+
+        .form-group select {
+
+            width: 100%;
+
+            padding: 10px 12px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 8px;
+
+            font: inherit;
+
+            box-sizing: border-box;
+
+        }
+
+
+        .form-group textarea {
+
+            min-height: 100px;
+
+            resize: vertical;
+
+        }
+
+
+        .modal-actions {
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+
+            margin-top: 24px;
+
+        }
+
+
+        .secondary-button {
+
+            padding: 10px 16px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 8px;
+
+            background: transparent;
+
+            cursor: pointer;
+
+        }
+
+
+        .empty-state {
+
+            padding: 40px;
+
+            text-align: center;
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-    <div class="app">
 
-        <!-- Sidebar -->
+<div class="app">
 
-        <aside class="sidebar">
 
-            <div class="logo">
-                ResearchHub
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            ResearchHub
+        </div>
+
+
+        <nav class="navigation">
+
+            <a
+                href="../index.html"
+                class="nav-item"
+            >
+                Dashboard
+            </a>
+
+
+            <a
+                href="projects.html"
+                class="nav-item"
+            >
+                Projects
+            </a>
+
+
+            <a
+                href="resources.html"
+                class="nav-item active"
+            >
+                Resources
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-item"
+            >
+                Notes
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-item"
+            >
+                Bookmarks
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- Main -->
+
+    <main class="main-content">
+
+
+        <!-- Topbar -->
+
+        <header class="topbar">
+
+            <div class="search">
+
+                <input
+                    type="text"
+                    placeholder="Search your research..."
+                >
+
             </div>
 
-            <nav class="navigation">
 
-                <a href="../index.html" class="nav-item">
-                    Dashboard
-                </a>
+            <div class="profile">
 
-                <a href="projects.html" class="nav-item">
-                    Projects
-                </a>
+                <div class="avatar">
+                    A
+                </div>
 
-                <a href="resources.html" class="nav-item active">
-                    Resources
-                </a>
+            </div>
 
-                <a href="#" class="nav-item">
-                    Notes
-                </a>
-
-                <a href="#" class="nav-item">
-                    Bookmarks
-                </a>
-
-            </nav>
-
-        </aside>
+        </header>
 
 
-        <!-- Main Content -->
 
-        <main class="main-content">
+        <!-- Resources -->
 
-            <!-- Topbar -->
+        <section class="resources-page">
 
-            <header class="topbar">
 
-                <div class="search">
+            <!-- Header -->
+
+            <div class="resources-header">
+
+                <div>
+
+                    <p class="eyebrow">
+                        Library
+                    </p>
+
+
+                    <h1>
+                        Resources
+                    </h1>
+
+
+                    <p class="subtitle">
+                        Store and organize everything you're learning.
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="add-resource-btn"
+                    class="primary-button"
+                    type="button"
+                >
+                    + Add Resource
+                </button>
+
+            </div>
+
+
+
+            <!-- Filters -->
+
+            <div class="resources-toolbar">
+
+
+                <div class="resource-search">
+
+                    <span class="search-icon">
+                        🔍
+                    </span>
+
 
                     <input
+                        id="resource-search"
                         type="text"
-                        placeholder="Search your research..."
+                        placeholder="Search resources..."
                     >
 
                 </div>
 
-                <div class="profile">
-
-                    <div class="avatar">
-                        A
-                    </div>
-
-                </div>
-
-            </header>
 
 
-            <!-- Resources Page -->
+                <select
+                    id="resource-type-filter"
+                    class="resource-filter"
+                >
 
-            <section class="resources-page">
+                    <option value="all">
+                        All Types
+                    </option>
 
-                <div class="resources-header">
+                    <option value="PDF">
+                        PDF
+                    </option>
+
+                    <option value="Website">
+                        Website
+                    </option>
+
+                    <option value="Book">
+                        Book
+                    </option>
+
+                    <option value="Video">
+                        Video
+                    </option>
+
+                </select>
+
+
+
+                <select
+                    id="resource-project-filter"
+                    class="resource-filter"
+                >
+
+                    <option value="all">
+                        All Projects
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- Resources Panel -->
+
+            <div class="resources-panel">
+
+
+                <div class="resources-panel-header">
 
                     <div>
 
-                        <p class="eyebrow">
-                            Library
-                        </p>
+                        <h2>
+                            All Resources
+                        </h2>
 
-                        <h1>
-                            Resources
-                        </h1>
 
-                        <p class="subtitle">
-                            Store and organize everything you're learning.
+                        <p id="resource-count">
+                            0 resources
                         </p>
 
                     </div>
 
-                    <button class="primary-button">
-                        + Add Resource
-                    </button>
 
-                </div>
+                    <select
+                        id="resource-sort"
+                        class="sort-select"
+                    >
 
-
-                <!-- Filters -->
-
-                <div class="resources-toolbar">
-
-                    <div class="resource-search">
-
-                        <span class="search-icon">
-                            🔍
-                        </span>
-
-                        <input
-                            type="text"
-                            placeholder="Search resources..."
-                        >
-
-                    </div>
-
-
-                    <select class="resource-filter">
-
-                        <option>
-                            All Types
+                        <option value="newest">
+                            Recently Added
                         </option>
 
-                        <option>
-                            PDF
+                        <option value="oldest">
+                            Oldest First
                         </option>
 
-                        <option>
-                            Website
-                        </option>
-
-                        <option>
-                            Book
-                        </option>
-
-                        <option>
-                            Video
-                        </option>
-
-                    </select>
-
-
-                    <select class="resource-filter">
-
-                        <option>
-                            All Projects
-                        </option>
-
-                        <option>
-                            Web Development
-                        </option>
-
-                        <option>
-                            Database Research
-                        </option>
-
-                        <option>
-                            System Design
+                        <option value="alphabetical">
+                            Alphabetical
                         </option>
 
                     </select>
@@ -182,336 +472,186 @@
                 </div>
 
 
-                <!-- Resources Panel -->
 
-                <div class="resources-panel">
+                <!-- Resource Table -->
 
-                    <div class="resources-panel-header">
-
-                        <div>
-
-                            <h2>
-                                All Resources
-                            </h2>
-
-                            <p>
-                                124 resources
-                            </p>
-
-                        </div>
-
-                        <select class="sort-select">
-
-                            <option>
-                                Recently Added
-                            </option>
-
-                            <option>
-                                Oldest First
-                            </option>
-
-                            <option>
-                                Alphabetical
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <!-- Resource Table -->
-
-                    <div class="resource-table">
-
-                        <!-- Table Header -->
-
-                        <div class="resource-row resource-row-header">
-
-                            <div>
-                                Resource
-                            </div>
-
-                            <div>
-                                Type
-                            </div>
-
-                            <div>
-                                Project
-                            </div>
-
-                            <div>
-                                Added
-                            </div>
-
-                            <div>
-                            </div>
-
-                        </div>
-
-
-                        <!-- Resource -->
-
-                        <div class="resource-row">
-
-                            <div class="resource-title">
-
-                                <div class="resource-type-icon pdf">
-                                    PDF
-                                </div>
-
-                                <div>
-
-                                    <h3>
-                                        Understanding Database Indexes
-                                    </h3>
-
-                                    <p>
-                                        Database optimization reference
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-
-                            <div>
-                                <span class="badge">
-                                    PDF
-                                </span>
-                            </div>
-
-
-                            <div>
-                                <span class="project-tag">
-                                    Database Research
-                                </span>
-                            </div>
-
-
-                            <div class="resource-date">
-                                Today
-                            </div>
-
-
-                            <button class="resource-menu">
-                                ⋮
-                            </button>
-
-                        </div>
-
-
-                        <!-- Resource -->
-
-                        <div class="resource-row">
-
-                            <div class="resource-title">
-
-                                <div class="resource-type-icon web">
-                                    WEB
-                                </div>
-
-                                <div>
-
-                                    <h3>
-                                        Modern JavaScript Guide
-                                    </h3>
-
-                                    <p>
-                                        JavaScript language reference
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-
-                            <div>
-                                <span class="badge">
-                                    Website
-                                </span>
-                            </div>
-
-
-                            <div>
-                                <span class="project-tag">
-                                    Web Development
-                                </span>
-                            </div>
-
-
-                            <div class="resource-date">
-                                Yesterday
-                            </div>
-
-
-                            <button class="resource-menu">
-                                ⋮
-                            </button>
-
-                        </div>
-
-
-                        <!-- Resource -->
-
-                        <div class="resource-row">
-
-                            <div class="resource-title">
-
-                                <div class="resource-type-icon pdf">
-                                    PDF
-                                </div>
-
-                                <div>
-
-                                    <h3>
-                                        System Design Fundamentals
-                                    </h3>
-
-                                    <p>
-                                        Introduction to scalable architecture
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-
-                            <div>
-                                <span class="badge">
-                                    PDF
-                                </span>
-                            </div>
-
-
-                            <div>
-                                <span class="project-tag">
-                                    System Design
-                                </span>
-                            </div>
-
-
-                            <div class="resource-date">
-                                3 days ago
-                            </div>
-
-
-                            <button class="resource-menu">
-                                ⋮
-                            </button>
-
-                        </div>
-
-
-                        <!-- Resource -->
-
-                        <div class="resource-row">
-
-                            <div class="resource-title">
-
-                                <div class="resource-type-icon web">
-                                    WEB
-                                </div>
-
-                                <div>
-
-                                    <h3>
-                                        MDN Web Documentation
-                                    </h3>
-
-                                    <p>
-                                        Web development documentation
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-
-                            <div>
-                                <span class="badge">
-                                    Website
-                                </span>
-                            </div>
-
-
-                            <div>
-                                <span class="project-tag">
-                                    Web Development
-                                </span>
-                            </div>
-
-
-                            <div class="resource-date">
-                                Last week
-                            </div>
-
-
-                            <button class="resource-menu">
-                                ⋮
-                            </button>
-
-                        </div>
-
-
-                        <!-- Resource -->
-
-                        <div class="resource-row">
-
-                            <div class="resource-title">
-
-                                <div class="resource-type-icon book">
-                                    BOOK
-                                </div>
-
-                                <div>
-
-                                    <h3>
-                                        Designing Data-Intensive Applications
-                                    </h3>
-
-                                    <p>
-                                        Distributed systems and databases
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-
-                            <div>
-                                <span class="badge">
-                                    Book
-                                </span>
-                            </div>
-
-
-                            <div>
-                                <span class="project-tag">
-                                    Database Research
-                                </span>
-                            </div>
-
-
-                            <div class="resource-date">
-                                Last week
-                            </div>
-
-
-                            <button class="resource-menu">
-                                ⋮
-                            </button>
-
-                        </div>
-
-                    </div>
+                <div
+                    class="resource-table"
+                    id="resource-table"
+                >
 
                 </div>
 
-            </section>
+            </div>
 
-        </main>
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- Add Resource Modal -->
+
+<div
+    id="resource-modal"
+    class="modal-overlay"
+>
+
+    <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+    >
+
+
+        <div class="modal-header">
+
+            <h2>
+                Add Resource
+            </h2>
+
+
+            <button
+                id="close-resource-modal"
+                class="modal-close"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+
+        <form id="resource-form">
+
+
+            <div class="form-group">
+
+                <label for="resource-title">
+                    Title
+                </label>
+
+                <input
+                    id="resource-title"
+                    type="text"
+                    placeholder="e.g. Python Documentation"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="resource-description">
+                    Description
+                </label>
+
+                <textarea
+                    id="resource-description"
+                    placeholder="What is this resource about?"
+                    required
+                ></textarea>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="resource-type">
+                    Type
+                </label>
+
+                <select
+                    id="resource-type"
+                    required
+                >
+
+                    <option value="">
+                        Select type
+                    </option>
+
+                    <option value="PDF">
+                        PDF
+                    </option>
+
+                    <option value="Website">
+                        Website
+                    </option>
+
+                    <option value="Book">
+                        Book
+                    </option>
+
+                    <option value="Video">
+                        Video
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="resource-project">
+                    Project
+                </label>
+
+                <select
+                    id="resource-project"
+                    required
+                >
+
+                    <option value="">
+                        Select project
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="modal-actions">
+
+                <button
+                    id="cancel-resource"
+                    type="button"
+                    class="secondary-button"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    Add Resource
+                </button>
+
+            </div>
+
+
+        </form>
 
     </div>
+
+</div>
+
+
+
+<script src="../js/data.js"></script>
+
+<script src="../js/resources.js"></script>
+
 
 </body>
 

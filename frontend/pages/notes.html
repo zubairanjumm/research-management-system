@@ -10,10 +10,8 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Projects — ResearchHub</title>
+    <title>Notes — ResearchHub</title>
 
-
-    <!-- Base CSS -->
 
     <link
         rel="stylesheet"
@@ -29,9 +27,6 @@
         rel="stylesheet"
         href="../css/global.css"
     >
-
-
-    <!-- Component CSS -->
 
     <link
         rel="stylesheet"
@@ -53,184 +48,194 @@
         href="../css/components/card.css"
     >
 
-    <link
-        rel="stylesheet"
-        href="../css/components/panel.css"
-    >
-
-
-    <!-- Page CSS -->
-
-    <link
-        rel="stylesheet"
-        href="../css/pages/projects.css"
-    >
-
-
-    <!-- Temporary Modal Styles -->
 
     <style>
 
-        .modal-overlay {
-
-            position: fixed;
-
-            inset: 0;
-
-            background: rgba(0, 0, 0, 0.5);
-
-            display: none;
-
-            align-items: center;
-
-            justify-content: center;
-
-            z-index: 1000;
-
+        .notes-page {
+            padding: 32px;
         }
 
 
-        .modal-overlay.active {
-
+        .notes-header {
             display: flex;
-
-        }
-
-
-        .modal {
-
-            width: min(500px, 90%);
-
-            background: white;
-
-            border-radius: 12px;
-
-            padding: 24px;
-
-            box-shadow:
-                0 20px 50px
-                rgba(0, 0, 0, 0.2);
-
-        }
-
-
-        .modal-header {
-
-            display: flex;
-
-            align-items: center;
-
+            align-items: flex-start;
             justify-content: space-between;
+            margin-bottom: 28px;
+        }
 
+
+        .notes-toolbar {
+            display: flex;
+            gap: 12px;
             margin-bottom: 24px;
-
         }
 
 
-        .modal-header h2 {
-
-            margin: 0;
-
-        }
-
-
-        .modal-close {
-
-            border: none;
-
-            background: transparent;
-
-            font-size: 24px;
-
-            cursor: pointer;
-
-        }
-
-
-        .form-group {
-
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 8px;
-
-            margin-bottom: 18px;
-
-        }
-
-
-        .form-group label {
-
-            font-weight: 600;
-
-        }
-
-
-        .form-group input,
-
-        .form-group textarea {
-
-            width: 100%;
-
-            padding: 10px 12px;
-
+        .notes-search,
+        .notes-filter {
+            padding: 11px 14px;
             border: 1px solid #d1d5db;
-
             border-radius: 8px;
-
             font: inherit;
-
-            box-sizing: border-box;
-
         }
 
 
-        .form-group textarea {
-
-            min-height: 100px;
-
-            resize: vertical;
-
+        .notes-search {
+            flex: 1;
         }
 
 
-        .modal-actions {
+        .notes-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
 
+
+        .note-card {
+            padding: 20px;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            background: white;
+        }
+
+
+        .note-card-header {
             display: flex;
-
-            justify-content: flex-end;
-
-            gap: 10px;
-
-            margin-top: 24px;
-
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 12px;
         }
 
 
-        .secondary-button {
+        .note-card h2 {
+            margin: 0;
+        }
 
-            padding: 10px 16px;
 
-            border: 1px solid #d1d5db;
+        .note-card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
 
-            border-radius: 8px;
 
+        .note-project {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 5px 9px;
+            border-radius: 6px;
+            background: #f3f4f6;
+            font-size: 13px;
+        }
+
+
+        .note-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+
+        .note-menu {
+            border: none;
             background: transparent;
-
             cursor: pointer;
-
+            font-size: 20px;
         }
 
 
         .empty-state {
-
             grid-column: 1 / -1;
-
+            padding: 50px;
             text-align: center;
+        }
 
-            padding: 40px;
 
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+
+        .modal {
+            width: min(500px, 90%);
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow:
+                0 20px 50px
+                rgba(0, 0, 0, 0.2);
+        }
+
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+
+        .modal-close {
+            border: none;
+            background: transparent;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 11px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font: inherit;
+        }
+
+
+        .form-group textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+
+        .secondary-button {
+            padding: 10px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            background: transparent;
+            cursor: pointer;
         }
 
     </style>
@@ -243,10 +248,6 @@
 
 <div class="app">
 
-
-    <!-- =========================
-         Sidebar
-    ========================== -->
 
     <aside class="sidebar">
 
@@ -267,7 +268,7 @@
 
             <a
                 href="projects.html"
-                class="nav-item active"
+                class="nav-item"
             >
                 Projects
             </a>
@@ -283,7 +284,7 @@
 
             <a
                 href="notes.html"
-                class="nav-item"
+                class="nav-item active"
             >
                 Notes
             </a>
@@ -301,20 +302,10 @@
     </aside>
 
 
-
-    <!-- =========================
-         Main Content
-    ========================== -->
-
     <main class="main-content">
 
 
-        <!-- =========================
-             Topbar
-        ========================== -->
-
         <header class="topbar">
-
 
             <div class="search">
 
@@ -337,82 +328,56 @@
         </header>
 
 
-
-        <!-- =========================
-             Projects Page
-        ========================== -->
-
-        <section class="projects-page">
+        <section class="notes-page">
 
 
-            <!-- Header -->
-
-            <div class="projects-header">
-
+            <div class="notes-header">
 
                 <div>
 
                     <p class="eyebrow">
-                        Workspace
+                        Knowledge
                     </p>
 
-
                     <h1>
-                        Projects
+                        Notes
                     </h1>
 
-
                     <p class="subtitle">
-                        Organize your research into focused projects.
+                        Capture and organize what you learn.
                     </p>
 
                 </div>
 
 
                 <button
-                    id="new-project-btn"
+                    id="new-note-btn"
                     class="primary-button"
                     type="button"
                 >
-                    + New Project
+                    + New Note
                 </button>
 
             </div>
 
 
-
-            <!-- =========================
-                 Search / Filter
-            ========================== -->
-
-            <div class="projects-toolbar">
-
+            <div class="notes-toolbar">
 
                 <input
+                    id="notes-search"
+                    class="notes-search"
                     type="text"
-                    id="project-search"
-                    class="project-search"
-                    placeholder="Search projects..."
+                    placeholder="Search notes..."
                 >
 
 
                 <select
-                    id="project-filter"
-                    class="project-filter"
+                    id="notes-project-filter"
+                    class="notes-filter"
                 >
 
                     <option value="all">
                         All Projects
-                    </option>
-
-
-                    <option value="active">
-                        Active
-                    </option>
-
-
-                    <option value="completed">
-                        Completed
                     </option>
 
                 </select>
@@ -420,17 +385,9 @@
             </div>
 
 
-
-            <!-- =========================
-                 Project Grid
-
-                 JavaScript generates
-                 project cards here.
-            ========================== -->
-
             <div
-                class="projects-grid"
-                id="projects-container"
+                id="notes-grid"
+                class="notes-grid"
             ></div>
 
 
@@ -442,39 +399,26 @@
 
 
 
-<!-- =========================
-     New Project Modal
-========================== -->
+<!-- New Note Modal -->
 
 <div
-    id="project-modal"
+    id="note-modal"
     class="modal-overlay"
 >
 
-
-    <div
-        class="modal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modal-title"
-    >
-
-
-        <!-- Modal Header -->
+    <div class="modal">
 
         <div class="modal-header">
 
-
-            <h2 id="modal-title">
-                Create New Project
+            <h2>
+                Create New Note
             </h2>
 
 
             <button
-                id="close-modal-btn"
+                id="close-note-modal"
                 class="modal-close"
                 type="button"
-                aria-label="Close modal"
             >
                 ×
             </button>
@@ -482,81 +426,64 @@
         </div>
 
 
+        <form id="note-form">
 
-        <!-- =========================
-             Project Form
-        ========================== -->
-
-        <form id="project-form">
-
-
-            <!-- Project Name -->
 
             <div class="form-group">
 
-                <label for="project-name">
-                    Project Name
+                <label for="note-title">
+                    Title
                 </label>
 
-
                 <input
-                    id="project-name"
+                    id="note-title"
                     type="text"
-                    placeholder="e.g. Machine Learning"
+                    placeholder="e.g. RAG Architecture"
                     required
                 >
 
             </div>
 
 
-
-            <!-- Description -->
-
             <div class="form-group">
 
-                <label for="project-description">
-                    Description
+                <label for="note-content">
+                    Note
                 </label>
 
-
                 <textarea
-                    id="project-description"
-                    placeholder="What are you researching?"
+                    id="note-content"
+                    placeholder="Write your note..."
                     required
                 ></textarea>
 
             </div>
 
 
-
-            <!-- Symbol -->
-
             <div class="form-group">
 
-                <label for="project-symbol">
-                    Symbol
+                <label for="note-project">
+                    Project
                 </label>
 
-
-                <input
-                    id="project-symbol"
-                    type="text"
-                    placeholder="e.g. ML"
-                    maxlength="3"
+                <select
+                    id="note-project"
                     required
                 >
+
+                    <option value="">
+                        Select project
+                    </option>
+
+                </select>
 
             </div>
 
 
-
-            <!-- Form Buttons -->
-
             <div class="modal-actions">
 
-
                 <button
-                    id="cancel-project-btn"
+                    id="cancel-note"
                     type="button"
                     class="secondary-button"
                 >
@@ -568,12 +495,10 @@
                     type="submit"
                     class="primary-button"
                 >
-                    Create Project
+                    Create Note
                 </button>
 
-
             </div>
-
 
         </form>
 
@@ -583,13 +508,9 @@
 
 
 
-<!-- =========================
-     JavaScript
-========================== -->
-
 <script src="../js/data.js"></script>
 
-<script src="../js/projects.js"></script>
+<script src="../js/notes.js"></script>
 
 
 </body>

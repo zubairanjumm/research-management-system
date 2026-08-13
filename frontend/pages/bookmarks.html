@@ -10,10 +10,8 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Projects — ResearchHub</title>
+    <title>Bookmarks — ResearchHub</title>
 
-
-    <!-- Base CSS -->
 
     <link
         rel="stylesheet"
@@ -30,9 +28,6 @@
         href="../css/global.css"
     >
 
-
-    <!-- Component CSS -->
-
     <link
         rel="stylesheet"
         href="../css/components/sidebar.css"
@@ -48,189 +43,201 @@
         href="../css/components/button.css"
     >
 
-    <link
-        rel="stylesheet"
-        href="../css/components/card.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../css/components/panel.css"
-    >
-
-
-    <!-- Page CSS -->
-
-    <link
-        rel="stylesheet"
-        href="../css/pages/projects.css"
-    >
-
-
-    <!-- Temporary Modal Styles -->
 
     <style>
 
-        .modal-overlay {
-
-            position: fixed;
-
-            inset: 0;
-
-            background: rgba(0, 0, 0, 0.5);
-
-            display: none;
-
-            align-items: center;
-
-            justify-content: center;
-
-            z-index: 1000;
-
+        .bookmarks-page {
+            padding: 32px;
         }
 
 
-        .modal-overlay.active {
-
+        .bookmarks-header {
             display: flex;
-
-        }
-
-
-        .modal {
-
-            width: min(500px, 90%);
-
-            background: white;
-
-            border-radius: 12px;
-
-            padding: 24px;
-
-            box-shadow:
-                0 20px 50px
-                rgba(0, 0, 0, 0.2);
-
-        }
-
-
-        .modal-header {
-
-            display: flex;
-
-            align-items: center;
-
             justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 28px;
+        }
 
+
+        .bookmarks-toolbar {
+            display: flex;
+            gap: 12px;
             margin-bottom: 24px;
-
         }
 
 
-        .modal-header h2 {
-
-            margin: 0;
-
-        }
-
-
-        .modal-close {
-
-            border: none;
-
-            background: transparent;
-
-            font-size: 24px;
-
-            cursor: pointer;
-
-        }
-
-
-        .form-group {
-
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 8px;
-
-            margin-bottom: 18px;
-
-        }
-
-
-        .form-group label {
-
-            font-weight: 600;
-
-        }
-
-
-        .form-group input,
-
-        .form-group textarea {
-
-            width: 100%;
-
-            padding: 10px 12px;
-
+        .bookmarks-search,
+        .bookmarks-filter {
+            padding: 11px 14px;
             border: 1px solid #d1d5db;
-
             border-radius: 8px;
-
             font: inherit;
-
-            box-sizing: border-box;
-
         }
 
 
-        .form-group textarea {
-
-            min-height: 100px;
-
-            resize: vertical;
-
+        .bookmarks-search {
+            flex: 1;
         }
 
 
-        .modal-actions {
+        .bookmarks-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
 
+
+        .bookmark-card {
+            padding: 20px;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            background: white;
+        }
+
+
+        .bookmark-card-header {
             display: flex;
-
-            justify-content: flex-end;
-
-            gap: 10px;
-
-            margin-top: 24px;
-
+            justify-content: space-between;
+            gap: 12px;
         }
 
 
-        .secondary-button {
+        .bookmark-card h2 {
+            margin: 0 0 12px;
+        }
 
-            padding: 10px 16px;
 
-            border: 1px solid #d1d5db;
+        .bookmark-card p {
+            color: #6b7280;
+            line-height: 1.5;
+        }
 
-            border-radius: 8px;
 
+        .bookmark-url {
+            display: block;
+            margin-top: 12px;
+            color: #2563eb;
+            word-break: break-all;
+        }
+
+
+        .bookmark-project {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 5px 9px;
+            border-radius: 6px;
+            background: #f3f4f6;
+            font-size: 13px;
+        }
+
+
+        .bookmark-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+
+        .bookmark-menu {
+            border: none;
             background: transparent;
-
             cursor: pointer;
-
+            font-size: 20px;
         }
 
 
         .empty-state {
-
             grid-column: 1 / -1;
-
+            padding: 50px;
             text-align: center;
+        }
 
-            padding: 40px;
 
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+
+        .modal {
+            width: min(500px, 90%);
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow:
+                0 20px 50px
+                rgba(0, 0, 0, 0.2);
+        }
+
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+
+        .modal-close {
+            border: none;
+            background: transparent;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 11px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font: inherit;
+        }
+
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+
+        .secondary-button {
+            padding: 10px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            background: transparent;
+            cursor: pointer;
         }
 
     </style>
@@ -243,10 +250,6 @@
 
 <div class="app">
 
-
-    <!-- =========================
-         Sidebar
-    ========================== -->
 
     <aside class="sidebar">
 
@@ -267,7 +270,7 @@
 
             <a
                 href="projects.html"
-                class="nav-item active"
+                class="nav-item"
             >
                 Projects
             </a>
@@ -291,7 +294,7 @@
 
             <a
                 href="bookmarks.html"
-                class="nav-item"
+                class="nav-item active"
             >
                 Bookmarks
             </a>
@@ -301,20 +304,10 @@
     </aside>
 
 
-
-    <!-- =========================
-         Main Content
-    ========================== -->
-
     <main class="main-content">
 
 
-        <!-- =========================
-             Topbar
-        ========================== -->
-
         <header class="topbar">
-
 
             <div class="search">
 
@@ -337,82 +330,56 @@
         </header>
 
 
-
-        <!-- =========================
-             Projects Page
-        ========================== -->
-
-        <section class="projects-page">
+        <section class="bookmarks-page">
 
 
-            <!-- Header -->
-
-            <div class="projects-header">
-
+            <div class="bookmarks-header">
 
                 <div>
 
                     <p class="eyebrow">
-                        Workspace
+                        Saved
                     </p>
 
-
                     <h1>
-                        Projects
+                        Bookmarks
                     </h1>
 
-
                     <p class="subtitle">
-                        Organize your research into focused projects.
+                        Keep useful links close to your research.
                     </p>
 
                 </div>
 
 
                 <button
-                    id="new-project-btn"
+                    id="new-bookmark-btn"
                     class="primary-button"
                     type="button"
                 >
-                    + New Project
+                    + Add Bookmark
                 </button>
 
             </div>
 
 
-
-            <!-- =========================
-                 Search / Filter
-            ========================== -->
-
-            <div class="projects-toolbar">
-
+            <div class="bookmarks-toolbar">
 
                 <input
+                    id="bookmarks-search"
+                    class="bookmarks-search"
                     type="text"
-                    id="project-search"
-                    class="project-search"
-                    placeholder="Search projects..."
+                    placeholder="Search bookmarks..."
                 >
 
 
                 <select
-                    id="project-filter"
-                    class="project-filter"
+                    id="bookmarks-project-filter"
+                    class="bookmarks-filter"
                 >
 
                     <option value="all">
                         All Projects
-                    </option>
-
-
-                    <option value="active">
-                        Active
-                    </option>
-
-
-                    <option value="completed">
-                        Completed
                     </option>
 
                 </select>
@@ -420,17 +387,9 @@
             </div>
 
 
-
-            <!-- =========================
-                 Project Grid
-
-                 JavaScript generates
-                 project cards here.
-            ========================== -->
-
             <div
-                class="projects-grid"
-                id="projects-container"
+                id="bookmarks-grid"
+                class="bookmarks-grid"
             ></div>
 
 
@@ -442,39 +401,27 @@
 
 
 
-<!-- =========================
-     New Project Modal
-========================== -->
+<!-- Add Bookmark Modal -->
 
 <div
-    id="project-modal"
+    id="bookmark-modal"
     class="modal-overlay"
 >
 
+    <div class="modal">
 
-    <div
-        class="modal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modal-title"
-    >
-
-
-        <!-- Modal Header -->
 
         <div class="modal-header">
 
-
-            <h2 id="modal-title">
-                Create New Project
+            <h2>
+                Add Bookmark
             </h2>
 
 
             <button
-                id="close-modal-btn"
+                id="close-bookmark-modal"
                 class="modal-close"
                 type="button"
-                aria-label="Close modal"
             >
                 ×
             </button>
@@ -482,81 +429,80 @@
         </div>
 
 
+        <form id="bookmark-form">
 
-        <!-- =========================
-             Project Form
-        ========================== -->
-
-        <form id="project-form">
-
-
-            <!-- Project Name -->
 
             <div class="form-group">
 
-                <label for="project-name">
-                    Project Name
+                <label for="bookmark-title">
+                    Title
                 </label>
 
-
                 <input
-                    id="project-name"
+                    id="bookmark-title"
                     type="text"
-                    placeholder="e.g. Machine Learning"
+                    placeholder="e.g. Python Documentation"
                     required
                 >
 
             </div>
 
 
+            <div class="form-group">
 
-            <!-- Description -->
+                <label for="bookmark-url">
+                    URL
+                </label>
+
+                <input
+                    id="bookmark-url"
+                    type="url"
+                    placeholder="https://example.com"
+                    required
+                >
+
+            </div>
+
 
             <div class="form-group">
 
-                <label for="project-description">
+                <label for="bookmark-description">
                     Description
                 </label>
 
-
                 <textarea
-                    id="project-description"
-                    placeholder="What are you researching?"
+                    id="bookmark-description"
+                    placeholder="What is this link useful for?"
                     required
                 ></textarea>
 
             </div>
 
 
-
-            <!-- Symbol -->
-
             <div class="form-group">
 
-                <label for="project-symbol">
-                    Symbol
+                <label for="bookmark-project">
+                    Project
                 </label>
 
-
-                <input
-                    id="project-symbol"
-                    type="text"
-                    placeholder="e.g. ML"
-                    maxlength="3"
+                <select
+                    id="bookmark-project"
                     required
                 >
+
+                    <option value="">
+                        Select project
+                    </option>
+
+                </select>
 
             </div>
 
 
-
-            <!-- Form Buttons -->
-
             <div class="modal-actions">
 
-
                 <button
-                    id="cancel-project-btn"
+                    id="cancel-bookmark"
                     type="button"
                     class="secondary-button"
                 >
@@ -568,12 +514,10 @@
                     type="submit"
                     class="primary-button"
                 >
-                    Create Project
+                    Add Bookmark
                 </button>
 
-
             </div>
-
 
         </form>
 
@@ -583,13 +527,9 @@
 
 
 
-<!-- =========================
-     JavaScript
-========================== -->
-
 <script src="../js/data.js"></script>
 
-<script src="../js/projects.js"></script>
+<script src="../js/bookmarks.js"></script>
 
 
 </body>
