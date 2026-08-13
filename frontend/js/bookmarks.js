@@ -35,6 +35,13 @@ const bookmarkProject =
     document.querySelector("#bookmark-project");
 
 
+
+/*
+|--------------------------------------------------------------------------
+| Project Options
+|--------------------------------------------------------------------------
+*/
+
 function renderProjectOptions() {
 
     bookmarksProjectFilter.innerHTML = `
@@ -71,6 +78,13 @@ function renderProjectOptions() {
 }
 
 
+
+/*
+|--------------------------------------------------------------------------
+| Render Bookmarks
+|--------------------------------------------------------------------------
+*/
+
 function renderBookmarks(bookmarkList) {
 
     bookmarksGrid.innerHTML = "";
@@ -101,6 +115,7 @@ function renderBookmarks(bookmarkList) {
         const card =
             document.createElement("article");
 
+
         card.className =
             "bookmark-card";
 
@@ -112,6 +127,7 @@ function renderBookmarks(bookmarkList) {
                 <h2>
                     ${bookmark.title}
                 </h2>
+
 
                 <button
                     class="bookmark-menu"
@@ -150,6 +166,7 @@ function renderBookmarks(bookmarkList) {
                     Saved bookmark
                 </span>
 
+
                 <a
                     href="${bookmark.url}"
                     target="_blank"
@@ -169,6 +186,13 @@ function renderBookmarks(bookmarkList) {
 
 }
 
+
+
+/*
+|--------------------------------------------------------------------------
+| Filter Bookmarks
+|--------------------------------------------------------------------------
+*/
 
 function filterBookmarks() {
 
@@ -219,10 +243,19 @@ function filterBookmarks() {
         });
 
 
-    renderBookmarks(filteredBookmarks);
+    renderBookmarks(
+        filteredBookmarks
+    );
 
 }
 
+
+
+/*
+|--------------------------------------------------------------------------
+| Modal
+|--------------------------------------------------------------------------
+*/
 
 function openBookmarkModal() {
 
@@ -240,6 +273,7 @@ function closeBookmarkModalWindow() {
     bookmarkForm.reset();
 
 }
+
 
 
 newBookmarkButton.addEventListener(
@@ -264,7 +298,9 @@ bookmarkModal.addEventListener(
     "click",
     (event) => {
 
-        if (event.target === bookmarkModal) {
+        if (
+            event.target === bookmarkModal
+        ) {
 
             closeBookmarkModalWindow();
 
@@ -273,6 +309,13 @@ bookmarkModal.addEventListener(
     }
 );
 
+
+
+/*
+|--------------------------------------------------------------------------
+| Create Bookmark
+|--------------------------------------------------------------------------
+*/
 
 bookmarkForm.addEventListener(
     "submit",
@@ -343,6 +386,259 @@ bookmarkForm.addEventListener(
 );
 
 
+
+/*
+|--------------------------------------------------------------------------
+| Edit Bookmark
+|--------------------------------------------------------------------------
+*/
+
+function editBookmark(bookmarkId) {
+
+    const bookmark =
+        bookmarks.find(
+            (item) =>
+                item.id === bookmarkId
+        );
+
+
+    if (!bookmark) {
+
+        return;
+
+    }
+
+
+    const newTitle =
+        prompt(
+            "Bookmark title:",
+            bookmark.title
+        );
+
+
+    if (newTitle === null) {
+
+        return;
+
+    }
+
+
+    const trimmedTitle =
+        newTitle.trim();
+
+
+    if (!trimmedTitle) {
+
+        return;
+
+    }
+
+
+    const newUrl =
+        prompt(
+            "Bookmark URL:",
+            bookmark.url
+        );
+
+
+    if (newUrl === null) {
+
+        return;
+
+    }
+
+
+    const trimmedUrl =
+        newUrl.trim();
+
+
+    if (!trimmedUrl) {
+
+        return;
+
+    }
+
+
+    const newDescription =
+        prompt(
+            "Bookmark description:",
+            bookmark.description
+        );
+
+
+    if (newDescription === null) {
+
+        return;
+
+    }
+
+
+    const trimmedDescription =
+        newDescription.trim();
+
+
+    if (!trimmedDescription) {
+
+        return;
+
+    }
+
+
+    bookmark.title =
+        trimmedTitle;
+
+
+    bookmark.url =
+        trimmedUrl;
+
+
+    bookmark.description =
+        trimmedDescription;
+
+
+    saveBookmarks();
+
+
+    filterBookmarks();
+
+}
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Delete Bookmark
+|--------------------------------------------------------------------------
+*/
+
+function deleteBookmark(bookmarkId) {
+
+    const bookmarkIndex =
+        bookmarks.findIndex(
+            (item) =>
+                item.id === bookmarkId
+        );
+
+
+    if (bookmarkIndex === -1) {
+
+        return;
+
+    }
+
+
+    const bookmark =
+        bookmarks[bookmarkIndex];
+
+
+    const confirmed =
+        confirm(
+            `Delete "${bookmark.title}"?`
+        );
+
+
+    if (!confirmed) {
+
+        return;
+
+    }
+
+
+    bookmarks.splice(
+        bookmarkIndex,
+        1
+    );
+
+
+    saveBookmarks();
+
+
+    filterBookmarks();
+
+}
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Three-Dot Menu
+|--------------------------------------------------------------------------
+*/
+
+bookmarksGrid.addEventListener(
+    "click",
+    (event) => {
+
+        const menuButton =
+            event.target.closest(
+                ".bookmark-menu"
+            );
+
+
+        if (!menuButton) {
+
+            return;
+
+        }
+
+
+        const bookmarkId =
+            Number(
+                menuButton.dataset.bookmarkId
+            );
+
+
+        const action =
+            prompt(
+                "Type 'edit' to edit or 'delete' to delete:"
+            );
+
+
+        if (!action) {
+
+            return;
+
+        }
+
+
+        const normalizedAction =
+            action
+                .trim()
+                .toLowerCase();
+
+
+        if (
+            normalizedAction === "edit"
+        ) {
+
+            editBookmark(
+                bookmarkId
+            );
+
+        }
+
+
+        if (
+            normalizedAction === "delete"
+        ) {
+
+            deleteBookmark(
+                bookmarkId
+            );
+
+        }
+
+    }
+);
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Search / Filter
+|--------------------------------------------------------------------------
+*/
+
 bookmarksSearch.addEventListener(
     "input",
     filterBookmarks
@@ -354,6 +650,13 @@ bookmarksProjectFilter.addEventListener(
     filterBookmarks
 );
 
+
+
+/*
+|--------------------------------------------------------------------------
+| Initial Render
+|--------------------------------------------------------------------------
+*/
 
 renderProjectOptions();
 
