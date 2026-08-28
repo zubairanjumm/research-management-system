@@ -38,49 +38,6 @@ LocalStorage — Client-side data persistence
 
 No frameworks or frontend libraries are currently required.
 
-Project Structure
-research_hub/
-│
-├── frontend/
-│   │
-│   ├── index.html
-│   ├── app.js
-│   │
-│   ├── pages/
-│   │   ├── projects.html
-│   │   ├── resources.html
-│   │   ├── notes.html
-│   │   └── bookmarks.html
-│   │
-│   ├── css/
-│   │   ├── reset.css
-│   │   ├── variables.css
-│   │   ├── global.css
-│   │   │
-│   │   ├── components/
-│   │   │   ├── sidebar.css
-│   │   │   ├── topbar.css
-│   │   │   ├── button.css
-│   │   │   ├── card.css
-│   │   │   └── panel.css
-│   │   │
-│   │   └── pages/
-│   │       ├── dashboard.css
-│   │       ├── projects.css
-│   │       ├── resources.css
-│   │       ├── notes.css
-│   │       └── bookmarks.css
-│   │
-│   └── js/
-│       ├── data.js
-│       ├── projects.js
-│       ├── resources.js
-│       ├── notes.js
-│       └── bookmarks.js
-│
-└── README.md
-Running the Project
-
 Because this is currently a frontend-only project, you don't need a backend server.
 
 The easiest way to run it is with VS Code Live Server.
