@@ -1,3 +1,11 @@
 .DS_Store
 Thumbs.db
 .env
+backend/researchhub.db
+backend/.venv/
+# SQLite database
+*.db
+# Python cache
+__pycache__/
+*.pyc
+.vscode/
