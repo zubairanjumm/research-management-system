@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from sqlalchemy import String, Text, Integer, DateTime
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import String, Integer, DateTime
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
 
@@ -9,17 +9,23 @@ from app.database import Base
 class Project(Base):
     __tablename__ = "projects"
 
-    id: Mapped[int] = mapped_column(primary_key=True, index=True)
+    id: Mapped[int] = mapped_column(
+        primary_key=True,
+        index=True
+    )
 
-    name: Mapped[str] = mapped_column(String(100), nullable=False)
+    name: Mapped[str] = mapped_column(
+        String(200),
+        nullable=False
+    )
 
     description: Mapped[str] = mapped_column(
-        Text,
+        String(1000),
         nullable=False
     )
 
     symbol: Mapped[str] = mapped_column(
-        String(10),
+        String(50),
         nullable=False
     )
 
@@ -29,8 +35,8 @@ class Project(Base):
     )
 
     status: Mapped[str] = mapped_column(
-        String(20),
-        default="active"
+        String(50),
+        nullable=False
     )
 
     created_at: Mapped[datetime] = mapped_column(
@@ -42,4 +48,19 @@ class Project(Base):
         DateTime,
         default=datetime.utcnow,
         onupdate=datetime.utcnow
+    )
+
+    resources = relationship(
+        "Resource",
+        back_populates="project"
+    )
+
+    notes = relationship(
+        "Note",
+        back_populates="project"
+    )
+
+    bookmarks = relationship(
+        "Bookmark",
+        back_populates="project"
     )

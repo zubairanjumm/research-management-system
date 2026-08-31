@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-
+from app.dependencies import validate_project
 from app.database import get_db
 from app.models.bookmark import Bookmark
 from app.schemas.bookmarks import (
@@ -8,7 +8,7 @@ from app.schemas.bookmarks import (
     BookmarkResponse,
     BookmarkUpdate,
 )
-
+from app.models.project import Project
 
 router = APIRouter(
     prefix="/api/bookmarks",
@@ -21,6 +21,8 @@ def create_bookmark(
     bookmark: BookmarkCreate,
     db: Session = Depends(get_db)
 ):
+    validate_project(bookmark.project_id,db)
+
     new_bookmark = Bookmark(
         project_id=bookmark.project_id,
         title=bookmark.title,
@@ -91,6 +93,8 @@ def update_bookmark(
     update_data = bookmark_data.model_dump(
         exclude_unset=True
     )
+    if "project_id" in update_data:
+        validate_project(update_data["project_id"], db)
 
     for field, value in update_data.items():
         setattr(bookmark, field, value)

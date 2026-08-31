@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from sqlalchemy import String, Text, Integer, DateTime, ForeignKey
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import String, Text, DateTime, ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
 
@@ -48,4 +48,9 @@ class Resource(Base):
         DateTime,
         default=datetime.utcnow,
         onupdate=datetime.utcnow
+    )
+
+    project = relationship(
+        "Project",
+        back_populates="resources"
     )

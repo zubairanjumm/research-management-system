@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-
+from app.dependencies import validate_project
 from app.database import get_db
 from app.models.resource import Resource
 from app.schemas.resource import (
@@ -8,19 +8,20 @@ from app.schemas.resource import (
     ResourceResponse,
     ResourceUpdate,
 )
-
+from app.models.project import Project
 
 router = APIRouter(
     prefix="/api/resources",
     tags=["Resources"]
 )
 
-
 @router.post("/", response_model=ResourceResponse)
 def create_resource(
     resource: ResourceCreate,
     db: Session = Depends(get_db)
 ):
+    validate_project(resource.project_id, db)
+
     new_resource = Resource(
         project_id=resource.project_id,
         title=resource.title,
@@ -34,7 +35,6 @@ def create_resource(
     db.refresh(new_resource)
 
     return new_resource
-
 
 @router.get("/{resource_id}", response_model=ResourceResponse)
 def get_resource(
@@ -77,7 +77,13 @@ def update_resource(
     update_data = resource_data.model_dump(
         exclude_unset=True
     )
-
+    if (
+        "project_id" in update_data
+        and update_data["project_id"] is not None
+    ):
+        if "project_id" in update_data:
+            validate_project(update_data["project_id"],db)
+            
     for field, value in update_data.items():
         setattr(resource, field, value)
 

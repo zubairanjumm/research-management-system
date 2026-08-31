@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-
+from app.dependencies import validate_project
 from app.database import get_db
 from app.models.note import Note
 from app.schemas.note import (
@@ -8,7 +8,7 @@ from app.schemas.note import (
     NoteResponse,
     NoteUpdate,
 )
-
+from app.models.project import Project
 
 router = APIRouter(
     prefix="/api/notes",
@@ -21,6 +21,7 @@ def create_note(
     note: NoteCreate,
     db: Session = Depends(get_db)
 ):
+    validate_project(note.project_id,db)
     new_note = Note(
         project_id=note.project_id,
         title=note.title,
@@ -90,6 +91,8 @@ def update_note(
     update_data = note_data.model_dump(
         exclude_unset=True
     )
+    if "project_id" in update_data:
+        validate_project(update_data["project_id"], db)
 
     for field, value in update_data.items():
         setattr(note, field, value)
