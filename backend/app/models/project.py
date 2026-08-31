@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import String, Integer, DateTime
+from sqlalchemy import DateTime, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
@@ -15,39 +15,37 @@ class Project(Base):
     )
 
     name: Mapped[str] = mapped_column(
-        String(200),
+        String(100),
         nullable=False
     )
 
     description: Mapped[str] = mapped_column(
-        String(1000),
+        Text,
         nullable=False
     )
 
     symbol: Mapped[str] = mapped_column(
-        String(50),
+        String(10),
+        nullable=False
+    )
+
+    status: Mapped[str] = mapped_column(
+        String(20),
         nullable=False
     )
 
     progress: Mapped[int] = mapped_column(
-        Integer,
-        default=0
-    )
-
-    status: Mapped[str] = mapped_column(
-        String(50),
         nullable=False
     )
 
     created_at: Mapped[datetime] = mapped_column(
         DateTime,
-        default=datetime.utcnow
+        nullable=False
     )
 
     updated_at: Mapped[datetime] = mapped_column(
         DateTime,
-        default=datetime.utcnow,
-        onupdate=datetime.utcnow
+        nullable=False
     )
 
     resources = relationship(
