@@ -23,6 +23,7 @@ from app.models.project import Project
 from app.models.resource import Resource
 from app.models.note import Note
 from app.models.bookmark import Bookmark
+from app.models.user import User
 
 target_metadata = Base.metadata
 # other values from the config, defined by the needs of env.py,
