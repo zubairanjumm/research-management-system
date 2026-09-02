@@ -1,26 +1,47 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from app.dependencies import validate_project
+
 from app.database import get_db
+from app.dependencies import get_current_user
+from app.models.project import Project
 from app.models.resource import Resource
+from app.models.user import User
 from app.schemas.resource import (
     ResourceCreate,
     ResourceResponse,
     ResourceUpdate,
 )
-from app.models.project import Project
 
 router = APIRouter(
     prefix="/api/resources",
     tags=["Resources"]
 )
 
-@router.post("/", response_model=ResourceResponse)
+
+@router.post(
+    "/",
+    response_model=ResourceResponse,
+    status_code=status.HTTP_201_CREATED
+)
 def create_resource(
     resource: ResourceCreate,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
 ):
-    validate_project(resource.project_id, db)
+    project = (
+        db.query(Project)
+        .filter(
+            Project.id == resource.project_id,
+            Project.user_id == current_user.id
+        )
+        .first()
+    )
+
+    if project is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Project not found"
+        )
 
     new_resource = Resource(
         project_id=resource.project_id,
@@ -36,54 +57,104 @@ def create_resource(
 
     return new_resource
 
-@router.get("/{resource_id}", response_model=ResourceResponse)
+
+@router.get(
+    "/",
+    response_model=list[ResourceResponse]
+)
+def get_resources(
+    project_id: int | None = None,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    query = (
+        db.query(Resource)
+        .join(Project)
+        .filter(Project.user_id == current_user.id)
+    )
+
+    if project_id is not None:
+        query = query.filter(Resource.project_id == project_id)
+
+    return query.all()
+
+
+@router.get(
+    "/{resource_id}",
+    response_model=ResourceResponse
+)
 def get_resource(
     resource_id: int,
     db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
 ):
     resource = (
         db.query(Resource)
-        .filter(Resource.id == resource_id)
+        .join(Project)
+        .filter(
+            Resource.id == resource_id,
+            Project.user_id == current_user.id
+        )
         .first()
     )
 
     if resource is None:
         raise HTTPException(
-            status_code=404,
+            status_code=status.HTTP_404_NOT_FOUND,
             detail="Resource not found"
         )
 
     return resource
 
 
-@router.put("/{resource_id}", response_model=ResourceResponse)
+@router.put(
+    "/{resource_id}",
+    response_model=ResourceResponse
+)
 def update_resource(
     resource_id: int,
     resource_data: ResourceUpdate,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
 ):
     resource = (
         db.query(Resource)
-        .filter(Resource.id == resource_id)
+        .join(Project)
+        .filter(
+            Resource.id == resource_id,
+            Project.user_id == current_user.id
+        )
         .first()
     )
 
     if resource is None:
         raise HTTPException(
-            status_code=404,
+            status_code=status.HTTP_404_NOT_FOUND,
             detail="Resource not found"
         )
 
     update_data = resource_data.model_dump(
         exclude_unset=True
     )
-    if (
-        "project_id" in update_data
-        and update_data["project_id"] is not None
-    ):
-        if "project_id" in update_data:
-            validate_project(update_data["project_id"],db)
-            
+
+    if "project_id" in update_data:
+        new_project_id = update_data["project_id"]
+
+        project = (
+            db.query(Project)
+            .filter(
+                Project.id == new_project_id,
+                Project.user_id == current_user.id
+            )
+            .first()
+        )
+
+        if project is None:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Project not found"
+            )
+
     for field, value in update_data.items():
         setattr(resource, field, value)
 
@@ -93,20 +164,28 @@ def update_resource(
     return resource
 
 
-@router.delete("/{resource_id}", response_model=dict)
+@router.delete(
+    "/{resource_id}",
+    response_model=dict
+)
 def delete_resource(
     resource_id: int,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
 ):
     resource = (
         db.query(Resource)
-        .filter(Resource.id == resource_id)
+        .join(Project)
+        .filter(
+            Resource.id == resource_id,
+            Project.user_id == current_user.id
+        )
         .first()
     )
 
     if resource is None:
         raise HTTPException(
-            status_code=404,
+            status_code=status.HTTP_404_NOT_FOUND,
             detail="Resource not found"
         )
 
@@ -116,15 +195,3 @@ def delete_resource(
     return {
         "message": "Resource deleted successfully"
     }
-
-@router.get("/", response_model=list[ResourceResponse])
-def get_resources(
-    project_id: int | None = None,
-    db: Session = Depends(get_db)
-):
-    query = db.query(Resource)
-
-    if project_id is not None:
-        query = query.filter(Resource.project_id == project_id)
-
-    return query.all()

@@ -15,7 +15,7 @@ class Project(Base):
     )
     user_id: Mapped[int] = mapped_column(
         ForeignKey("users.id"),
-        nullable=True,
+        nullable=False,
         index=True
     )
     name: Mapped[str] = mapped_column(

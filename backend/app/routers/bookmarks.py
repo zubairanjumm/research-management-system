@@ -1,14 +1,16 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from app.dependencies import validate_project
+
 from app.database import get_db
+from app.dependencies import get_current_user
 from app.models.bookmark import Bookmark
+from app.models.project import Project
+from app.models.user import User
 from app.schemas.bookmarks import (
     BookmarkCreate,
     BookmarkResponse,
     BookmarkUpdate,
 )
-from app.models.project import Project
 
 router = APIRouter(
     prefix="/api/bookmarks",
@@ -16,12 +18,30 @@ router = APIRouter(
 )
 
 
-@router.post("/", response_model=BookmarkResponse)
+@router.post(
+    "/",
+    response_model=BookmarkResponse,
+    status_code=status.HTTP_201_CREATED
+)
 def create_bookmark(
     bookmark: BookmarkCreate,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
 ):
-    validate_project(bookmark.project_id,db)
+    project = (
+        db.query(Project)
+        .filter(
+            Project.id == bookmark.project_id,
+            Project.user_id == current_user.id
+        )
+        .first()
+    )
+
+    if project is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Project not found"
+        )
 
     new_bookmark = Bookmark(
         project_id=bookmark.project_id,
@@ -37,12 +57,20 @@ def create_bookmark(
     return new_bookmark
 
 
-@router.get("/", response_model=list[BookmarkResponse])
+@router.get(
+    "/",
+    response_model=list[BookmarkResponse]
+)
 def get_bookmarks(
     project_id: int | None = None,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
 ):
-    query = db.query(Bookmark)
+    query = (
+        db.query(Bookmark)
+        .join(Project)
+        .filter(Project.user_id == current_user.id)
+    )
 
     if project_id is not None:
         query = query.filter(
@@ -52,49 +80,81 @@ def get_bookmarks(
     return query.all()
 
 
-@router.get("/{bookmark_id}", response_model=BookmarkResponse)
+@router.get(
+    "/{bookmark_id}",
+    response_model=BookmarkResponse
+)
 def get_bookmark(
     bookmark_id: int,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
 ):
     bookmark = (
         db.query(Bookmark)
-        .filter(Bookmark.id == bookmark_id)
+        .join(Project)
+        .filter(
+            Bookmark.id == bookmark_id,
+            Project.user_id == current_user.id
+        )
         .first()
     )
 
     if bookmark is None:
         raise HTTPException(
-            status_code=404,
+            status_code=status.HTTP_404_NOT_FOUND,
             detail="Bookmark not found"
         )
 
     return bookmark
 
 
-@router.put("/{bookmark_id}", response_model=BookmarkResponse)
+@router.put(
+    "/{bookmark_id}",
+    response_model=BookmarkResponse
+)
 def update_bookmark(
     bookmark_id: int,
     bookmark_data: BookmarkUpdate,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
 ):
     bookmark = (
         db.query(Bookmark)
-        .filter(Bookmark.id == bookmark_id)
+        .join(Project)
+        .filter(
+            Bookmark.id == bookmark_id,
+            Project.user_id == current_user.id
+        )
         .first()
     )
 
     if bookmark is None:
         raise HTTPException(
-            status_code=404,
+            status_code=status.HTTP_404_NOT_FOUND,
             detail="Bookmark not found"
         )
 
     update_data = bookmark_data.model_dump(
         exclude_unset=True
     )
+
     if "project_id" in update_data:
-        validate_project(update_data["project_id"], db)
+        new_project_id = update_data["project_id"]
+
+        project = (
+            db.query(Project)
+            .filter(
+                Project.id == new_project_id,
+                Project.user_id == current_user.id
+            )
+            .first()
+        )
+
+        if project is None:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Project not found"
+            )
 
     for field, value in update_data.items():
         setattr(bookmark, field, value)
@@ -105,20 +165,28 @@ def update_bookmark(
     return bookmark
 
 
-@router.delete("/{bookmark_id}", response_model=dict)
+@router.delete(
+    "/{bookmark_id}",
+    response_model=dict
+)
 def delete_bookmark(
     bookmark_id: int,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
 ):
     bookmark = (
         db.query(Bookmark)
-        .filter(Bookmark.id == bookmark_id)
+        .join(Project)
+        .filter(
+            Bookmark.id == bookmark_id,
+            Project.user_id == current_user.id
+        )
         .first()
     )
 
     if bookmark is None:
         raise HTTPException(
-            status_code=404,
+            status_code=status.HTTP_404_NOT_FOUND,
             detail="Bookmark not found"
         )
 
