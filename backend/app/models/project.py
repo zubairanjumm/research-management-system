@@ -1,6 +1,5 @@
-from datetime import datetime
-
-from sqlalchemy import DateTime,ForeignKey,String, Text
+from datetime import datetime,timezone
+from sqlalchemy import DateTime,ForeignKey,String, Text,Column
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
@@ -42,14 +41,15 @@ class Project(Base):
         nullable=False
     )
 
-    created_at: Mapped[datetime] = mapped_column(
-        DateTime,
-        nullable=False
+    created_at = Column(
+        DateTime(timezone=True),
+        default=lambda: datetime.now(timezone.utc),
     )
 
-    updated_at: Mapped[datetime] = mapped_column(
-        DateTime,
-        nullable=False
+    updated_at = Column(
+        DateTime(timezone=True),
+        default=lambda: datetime.now(timezone.utc),
+        onupdate=lambda: datetime.now(timezone.utc),
     )
 
     resources = relationship(
