@@ -54,17 +54,20 @@ class Project(Base):
 
     resources = relationship(
         "Resource",
-        back_populates="project"
+        back_populates="project",
+        cascade="all, delete-orphan"
     )
 
     notes = relationship(
         "Note",
-        back_populates="project"
+        back_populates="project",
+        cascade="all, delete-orphan"
     )
 
     bookmarks = relationship(
         "Bookmark",
-        back_populates="project"
+        back_populates="project",
+        cascade="all, delete-orphan"
     )
     user = relationship(
         "User",

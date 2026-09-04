@@ -15,8 +15,8 @@ class Bookmark(Base):
     )
 
     project_id: Mapped[int] = mapped_column(
-        ForeignKey("projects.id"),
-        nullable=False
+    ForeignKey("projects.id", ondelete="CASCADE"),
+    nullable=False
     )
 
     title: Mapped[str] = mapped_column(
